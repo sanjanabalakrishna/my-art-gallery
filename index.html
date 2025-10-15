@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Art Gallery</title>
+  <style>
+    body {
+      font-family: 'Georgia', serif;
+      background-color: #faf8f6;
+      color: #333;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+    header {
+      padding: 2rem 1rem;
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.3rem;
+    }
+    p.subtitle {
+      font-size: 1.1rem;
+      color: #666;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      padding: 2rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+    .art-card {
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+    .art-card:hover {
+      transform: translateY(-5px);
+    }
+    img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .caption {
+      padding: 1rem;
+      font-size: 1rem;
+      color: #444;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Brushstrokes of Light</h1>
+    <p class="subtitle">A collection of my paintings and the stories they tell</p>
+  </header>
+
+  <section class="gallery">
+    <div class="art-card">
+      <img src="https://placehold.co/600x400" alt="Painting 1">
+      <div class="caption">“Calm after the storm” — inspired by an evening hike.</div>
+    </div>
+
+    <div class="art-card">
+      <img src="https://placehold.co/600x400" alt="Painting 2">
+      <div class="caption">“Whispers of the sea” — acrylic on canvas.</div>
+    </div>
+
+    <div class="art-card">
+      <img src="https://placehold.co/600x400" alt="Painting 3">
+      <div class="caption">“Dancing leaves” — where light and silence meet.</div>
+    </div>
+  </section>
+</body>
+</html>
