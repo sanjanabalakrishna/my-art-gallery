@@ -433,6 +433,228 @@
             100% { transform: rotate(360deg); }
         }
 
+        /* Welcome & About Me Section */
+.welcome-section {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 2rem;
+    text-align: center;
+}
+
+.welcome-card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 25px;
+    padding: 3rem 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    animation: fadeInScale 1.2s ease-out 0.8s both;
+    position: relative;
+    overflow: hidden;
+}
+
+.welcome-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #ff6b9d, #4d9de0, transparent);
+    animation: shimmerLine 3s ease-in-out infinite;
+}
+
+@keyframes shimmerLine {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.95) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.welcome-content {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.profile-image {
+    flex-shrink: 0;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid rgba(255, 107, 157, 0.3);
+    box-shadow: 
+        0 10px 30px rgba(0, 0, 0, 0.2),
+        0 0 20px rgba(255, 107, 157, 0.2);
+    position: relative;
+    animation: profileGlow 3s ease-in-out infinite;
+}
+
+@keyframes profileGlow {
+    0%, 100% { 
+        box-shadow: 
+            0 10px 30px rgba(0, 0, 0, 0.2),
+            0 0 20px rgba(255, 107, 157, 0.2);
+    }
+    50% { 
+        box-shadow: 
+            0 15px 40px rgba(0, 0, 0, 0.3),
+            0 0 30px rgba(255, 107, 157, 0.4);
+    }
+}
+
+.profile-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.profile-image:hover img {
+    transform: scale(1.05);
+}
+
+.about-content {
+    flex: 1;
+    text-align: left;
+}
+
+.welcome-greeting {
+    font-size: clamp(1.3rem, 3vw, 1.6rem);
+    color: #e8f5e8;
+    margin-bottom: 1.2rem;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+}
+
+.welcome-greeting .wave {
+    display: inline-block;
+    animation: wave 2s ease-in-out infinite;
+    margin-left: 0.5rem;
+}
+
+@keyframes wave {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(20deg); }
+    75% { transform: rotate(-10deg); }
+}
+
+.about-text {
+    font-size: clamp(1rem, 2.5vw, 1.1rem);
+    line-height: 1.7;
+    color: rgba(232, 245, 232, 0.9);
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+}
+
+.nature-highlight {
+    background: linear-gradient(45deg, #6bcf7f, #4d9de0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 400;
+}
+
+.artist-signature {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+    background: linear-gradient(45deg, #ff6b9d, #ffd93d, #6bcf7f);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-style: italic;
+    margin-top: 1rem;
+}
+
+.scroll-hint {
+    margin-top: 2.5rem;
+    font-size: 0.9rem;
+    color: rgba(232, 245, 232, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.scroll-arrow {
+    animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+/* Mobile optimizations for welcome section */
+@media (max-width: 768px) {
+    .welcome-section {
+        margin: 1.5rem auto;
+        padding: 0 1rem;
+    }
+
+    .welcome-card {
+        padding: 2.5rem 1.5rem;
+        border-radius: 20px;
+        animation-delay: 0.5s;
+    }
+
+    .welcome-card::before {
+        animation: none; /* Disable shimmer on mobile */
+    }
+
+    .welcome-content {
+        flex-direction: column;
+        gap: 1.5rem;
+        text-align: center;
+    }
+
+    .about-content {
+        text-align: center;
+    }
+
+    .profile-image {
+        width: 100px;
+        height: 100px;
+    }
+
+    .about-text {
+        margin-bottom: 1rem;
+    }
+
+    .scroll-hint {
+        margin-top: 1.5rem;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .welcome-card {
+        padding: 2rem 1.2rem;
+    }
+
+    .profile-image {
+        width: 90px;
+        height: 90px;
+    }
+
+    .welcome-content {
+        gap: 1.2rem;
+    }
+}
+
+
         /* Scroll reveal animation */
         .scroll-reveal {
             opacity: 0;
@@ -675,6 +897,31 @@
         <h1>Brushstrokes of Nature</h1>
         <p class="subtitle">A collection of my paintings and the stories they tell</p>
     </header>
+
+    <!-- Welcome & About Me Section -->
+<section class="welcome-section">
+    <div class="welcome-card">
+        <div class="welcome-content">
+            <div class="profile-image">
+                <img src="https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/misc/Sanjana.jpg" alt="Sanjana - Hiker/Nature Lover/Artist">
+            </div>
+            <div class="about-content">
+                <div class="welcome-greeting">
+                    Welcome to my artistic journey<span class="wave">👋</span>
+                </div>
+                <p class="about-text">
+                    By day, I'm an engineer solving complex problems with logic and precision. But when the sun sets, I trade my keyboard for a paintbrush and let <span class="nature-highlight">nature's endless symphony</span> guide my hand. Every hiking trail whispers a story, every mountain peak holds a secret, and every forest clearing becomes my muse. The <span class="nature-highlight">great outdoors isn't just my escape—it's my greatest teacher</span>, showing me colors I never knew existed and moments of pure magic that I'm compelled to capture on canvas.
+                </p>
+                <div class="artist-signature">~ Sanjana, Engineer & Nature's Student</div>
+            </div>
+        </div>
+        <div class="scroll-hint">
+            <span>Discover the stories nature told me</span>
+            <span class="scroll-arrow">↓</span>
+        </div>
+    </div>
+</section>
+
 
     <section class="gallery">
         <div class="art-card scroll-reveal">
