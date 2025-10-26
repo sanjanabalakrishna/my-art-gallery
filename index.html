@@ -490,8 +490,8 @@
 
 .profile-image {
     flex-shrink: 0;
-    width: 120px;
-    height: 120px;
+    width: 160px;
+    height: 160px;
     border-radius: 50%;
     overflow: hidden;
     border: 3px solid rgba(255, 107, 157, 0.3);
@@ -500,7 +500,111 @@
         0 0 20px rgba(255, 107, 157, 0.2);
     position: relative;
     animation: profileGlow 3s ease-in-out infinite;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
+
+@keyframes profileGlow {
+    0%, 100% { 
+        box-shadow: 
+            0 10px 30px rgba(0, 0, 0, 0.2),
+            0 0 20px rgba(255, 107, 157, 0.2);
+    }
+    50% { 
+        box-shadow: 
+            0 15px 40px rgba(0, 0, 0, 0.3),
+            0 0 30px rgba(255, 107, 157, 0.4);
+    }
+}
+
+.profile-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.4s ease;
+}
+
+.profile-image:hover {
+    transform: scale(1.15);
+    border-color: rgba(255, 107, 157, 0.6);
+    box-shadow: 
+        0 20px 50px rgba(0, 0, 0, 0.4),
+        0 0 40px rgba(255, 107, 157, 0.5);
+}
+
+.profile-image:hover img {
+    transform: scale(1.05);
+    filter: brightness(1.1) contrast(1.1);
+}
+
+.profile-image:active {
+    transform: scale(1.25);
+}
+
+/* Profile image modal */
+.profile-modal {
+    display: none;
+    position: fixed;
+    z-index: 3000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(20px);
+}
+
+.profile-modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 400px;
+    max-height: 400px;
+    border-radius: 20px;
+    overflow: hidden;
+    animation: profileModalAppear 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 
+        0 50px 100px rgba(0, 0, 0, 0.5),
+        0 0 100px rgba(255, 107, 157, 0.4);
+}
+
+@keyframes profileModalAppear {
+    from { 
+        transform: translate(-50%, -50%) scale(0.5) rotate(10deg); 
+        opacity: 0;
+    }
+    to { 
+        transform: translate(-50%, -50%) scale(1) rotate(0deg); 
+        opacity: 1;
+    }
+}
+
+.profile-modal img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-close {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    color: #ff6b9d;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 3001;
+    transition: all 0.3s ease;
+    text-shadow: 0 0 20px rgba(255, 107, 157, 0.5);
+}
+
+.profile-close:hover {
+    color: #ffd93d;
+    transform: rotate(90deg) scale(1.2);
+    text-shadow: 0 0 30px rgba(255, 217, 61, 0.8);
+}
+
 
 @keyframes profileGlow {
     0%, 100% { 
@@ -625,8 +729,21 @@
     }
 
     .profile-image {
-        width: 100px;
-        height: 100px;
+        width: 140px;
+        height: 140px;
+    }
+
+    .profile-image:hover {
+        transform: scale(1.1);
+    }
+
+    .profile-image:active {
+        transform: scale(1.2);
+    }
+
+    .profile-modal-content {
+        max-width: 90%;
+        max-height: 90%;
     }
 
     .about-text {
@@ -638,6 +755,28 @@
         font-size: 0.85rem;
     }
 }
+
+@media (max-width: 480px) {
+    .welcome-card {
+        padding: 2rem 1.2rem;
+    }
+
+    .profile-image {
+        width: 120px;
+        height: 120px;
+    }
+
+    .welcome-content {
+        gap: 1.2rem;
+    }
+
+    .profile-close {
+        top: 15px;
+        right: 20px;
+        font-size: 30px;
+    }
+}
+
 
 @media (max-width: 480px) {
     .welcome-card {
@@ -945,8 +1084,8 @@
         </div>
         
         <div class="art-card scroll-reveal">
-            <div class="image-container" onclick="openModal('https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/IMG_4075.jpg')">
-                <img src="https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/IMG_4075.jpg" alt="Maligne Lake">
+            <div class="image-container" onclick="openModal('https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/acrylic-paintings/Maligne Lake.jpg')">
+                <img src="https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/acrylic-paintings/Maligne Lake.jpg" alt="Maligne Lake">
                 <div class="image-overlay">
                     <span class="view-text">View Full Size</span>
                 </div>
@@ -993,6 +1132,16 @@
             </div>
             <div class="caption">Inspired by the enduring beauty of the Peony, this piece uses hand-sculpted texture and shimmering gold accents to symbolize prosperity, romance, and honor.</div>
         </div>
+
+        <div class="art-card scroll-reveal">
+            <div class="image-container" onclick="openModal('https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/mixed-media/Impasto Colored Mountains.jpg')">
+                <img src="https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/mixed-media/Impasto Colored Mountains.jpg" alt="Colored Impasto Mountains">
+                <div class="image-overlay">
+                    <span class="view-text">View Full Size</span>
+                </div>
+            </div>
+            <div class="caption">3d mountains with modelling paste and acrylic paint. nspired by the awe-inspiring grandeur of towering peaks and rugged landscapes.</div>
+        </div>
         
         <div class="art-card scroll-reveal">
             <div class="image-container" onclick="openModal('https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/IMG_4003.jpg')">
@@ -1012,6 +1161,16 @@
                 </div>
             </div>
             <div class="caption">There are far better things ahead than any we leave behind. Gift for a friend.</div>
+        </div>
+
+        <div class="art-card scroll-reveal">
+            <div class="image-container" onclick="openModal('https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/mixed-media/3dWhiteFlower.jpg')">
+                <img src="https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/mixed-media/3dWhiteFlower.jpg" alt="3d Impasto Flower">
+                <div class="image-overlay">
+                    <span class="view-text">View Full Size</span>
+                </div>
+            </div>
+            <div class="caption">Sculpted each petal with modelling paste and brush; finished with gold accents. Inspired by the delicate beauty and resilience of nature's blooms.</div>
         </div>
 
         <div class="art-card scroll-reveal">
@@ -1154,6 +1313,13 @@
         <img class="modal-content" id="modalImage">
     </div>
 
+    <!-- Profile Image Modal -->
+<div id="profileModal" class="profile-modal" onclick="closeProfileModal()">
+    <span class="profile-close">&times;</span>
+    <img class="profile-modal-content" id="profileModalImage" src="https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/misc/Sanjana.jpg" alt="Sanjana - Nature Artist">
+</div>
+
+
     <script>
         // Device detection
         function isMobile() {
@@ -1206,6 +1372,33 @@
             modal.style.display = 'none';
             document.body.style.overflow = 'auto';
         }
+
+        // Profile modal functionality
+function openProfileModal() {
+    const modal = document.getElementById('profileModal');
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+}
+
+function closeProfileModal() {
+    const modal = document.getElementById('profileModal');
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+}
+
+// Update the existing keyboard event listener to include profile modal
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        closeModal();
+        closeProfileModal(); 
+    }
+});
+
+// Prevent profile modal close when clicking on image
+document.getElementById('profileModalImage').addEventListener('click', function(event) {
+    event.stopPropagation();
+});
+
 
         // Scroll to top
         function scrollToTop() {
@@ -1301,6 +1494,7 @@
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape') {
                 closeModal();
+                closeProfileModal();
             }
         });
 
@@ -1308,6 +1502,12 @@
         document.getElementById('modalImage').addEventListener('click', function(event) {
             event.stopPropagation();
         });
+
+        // Prevent profile modal close when clicking on image
+        document.getElementById('profileModalImage').addEventListener('click', function(event) {
+            event.stopPropagation();
+        });
+
 
         // Swipe gestures for mobile modal
         if (isTouchDevice()) {
