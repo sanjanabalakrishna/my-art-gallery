@@ -490,8 +490,8 @@
 
 .profile-image {
     flex-shrink: 0;
-    width: 160px;
-    height: 160px;
+    width: 140px;
+    height: 140px;
     border-radius: 50%;
     overflow: hidden;
     border: 3px solid rgba(255, 107, 157, 0.3);
@@ -501,8 +501,127 @@
     position: relative;
     animation: profileGlow 3s ease-in-out infinite;
     cursor: pointer;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: all 0.3s ease;
 }
+
+@keyframes profileGlow {
+    0%, 100% { 
+        box-shadow: 
+            0 10px 30px rgba(0, 0, 0, 0.2),
+            0 0 20px rgba(255, 107, 157, 0.2);
+    }
+    50% { 
+        box-shadow: 
+            0 15px 40px rgba(0, 0, 0, 0.3),
+            0 0 30px rgba(255, 107, 157, 0.4);
+    }
+}
+
+.profile-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.3s ease;
+}
+
+.profile-image:hover {
+    transform: scale(1.08);
+    border-color: rgba(255, 107, 157, 0.5);
+}
+
+.profile-image:active {
+    transform: scale(1.05);
+}
+
+/* Profile Modal */
+.profile-modal {
+    display: none;
+    position: fixed;
+    z-index: 3000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+}
+
+.profile-modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 300px;
+    border-radius: 20px;
+    overflow: hidden;
+    animation: profileZoom 0.3s ease-out;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+@keyframes profileZoom {
+    from { 
+        transform: translate(-50%, -50%) scale(0.3); 
+        opacity: 0;
+    }
+    to { 
+        transform: translate(-50%, -50%) scale(1); 
+        opacity: 1;
+    }
+}
+
+.profile-modal img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-close {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    color: #ff6b9d;
+    font-size: 35px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 3001;
+    transition: all 0.3s ease;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+}
+
+.profile-close:hover {
+    color: #ffd93d;
+    transform: scale(1.1);
+}
+
+/* Mobile - Half Screen Size */
+@media (max-width: 768px) {
+    .profile-image {
+        width: 120px;
+        height: 120px;
+    }
+
+    .profile-modal-content {
+        width: 50vw;
+        height: 50vw;
+        max-width: 250px;
+        max-height: 250px;
+    }
+
+    .profile-close {
+        top: 15px;
+        right: 20px;
+        font-size: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-image {
+        width: 110px;
+        height: 110px;
+    }
+}
+
 
 @keyframes profileGlow {
     0%, 100% { 
@@ -1041,7 +1160,7 @@
 <section class="welcome-section">
     <div class="welcome-card">
         <div class="welcome-content">
-            <div class="profile-image">
+            <div class="profile-image" onclick="openProfileModal()">
                 <img src="https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/misc/Sanjana.jpg" alt="Sanjana - Hiker/Nature Lover/Artist">
             </div>
             <div class="about-content">
@@ -1314,11 +1433,12 @@
     </div>
 
     <!-- Profile Image Modal -->
-<div id="profileModal" class="profile-modal" onclick="closeProfileModal()">
-    <span class="profile-close">&times;</span>
-    <img class="profile-modal-content" id="profileModalImage" src="https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/misc/Sanjana.jpg" alt="Sanjana - Nature Artist">
-</div>
-
+    <div id="profileModal" class="profile-modal" onclick="closeProfileModal()">
+        <span class="profile-close">&times;</span>
+        <div class="profile-modal-content">
+            <img src="https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/misc/Sanjana.jpg" alt="Sanjana - Nature Artist">
+        </div>
+    </div>
 
     <script>
         // Device detection
@@ -1374,30 +1494,17 @@
         }
 
         // Profile modal functionality
-function openProfileModal() {
-    const modal = document.getElementById('profileModal');
-    modal.style.display = 'block';
-    document.body.style.overflow = 'hidden';
-}
+        function openProfileModal() {
+            const modal = document.getElementById('profileModal');
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
 
-function closeProfileModal() {
-    const modal = document.getElementById('profileModal');
-    modal.style.display = 'none';
-    document.body.style.overflow = 'auto';
-}
-
-// Update the existing keyboard event listener to include profile modal
-document.addEventListener('keydown', function(event) {
-    if (event.key === 'Escape') {
-        closeModal();
-        closeProfileModal(); 
-    }
-});
-
-// Prevent profile modal close when clicking on image
-document.getElementById('profileModalImage').addEventListener('click', function(event) {
-    event.stopPropagation();
-});
+        function closeProfileModal() {
+            const modal = document.getElementById('profileModal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
 
 
         // Scroll to top
