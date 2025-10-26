@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Brushstrokes of Nature - Art Gallery</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
@@ -20,6 +20,8 @@
             color: #f8f9fa;
             overflow-x: hidden;
             min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         @keyframes gradientFlow {
@@ -27,6 +29,10 @@
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
+
+        /* Device-specific optimizations */
+        .mobile-only { display: none; }
+        .desktop-only { display: block; }
 
         /* Animated constellation background */
         .constellation {
@@ -76,7 +82,7 @@
             }
         }
 
-        /* Glassmorphism header with aurora effect */
+        /* Glassmorphism header */
         header {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(30px);
@@ -152,7 +158,7 @@
         }
 
         .subtitle {
-            font-size: 1.4rem;
+            font-size: clamp(1rem, 3vw, 1.4rem);
             background: linear-gradient(45deg, #e8f5e8, #f0f8ff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -163,10 +169,10 @@
             z-index: 1;
         }
 
-        /* Gallery with 3D perspective */
+        /* Gallery with responsive grid */
         .gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 3rem;
             padding: 3rem 2rem;
             max-width: 1600px;
@@ -189,6 +195,7 @@
             opacity: 0;
             transform: translateY(50px) rotateX(10deg);
             transform-style: preserve-3d;
+            cursor: pointer;
         }
 
         .art-card:nth-child(1) { animation-delay: 0.1s; }
@@ -205,6 +212,7 @@
             }
         }
 
+        /* Desktop hover effects */
         .art-card:hover {
             transform: translateY(-20px) rotateX(-5deg) rotateY(5deg) scale(1.03);
             box-shadow: 
@@ -302,7 +310,7 @@
             50% { opacity: 1; }
         }
 
-        /* Enhanced Modal with 3D effect */
+        /* Enhanced Modal */
         .modal {
             display: none;
             position: fixed;
@@ -396,40 +404,6 @@
             font-weight: bold;
         }
 
-        /* Responsive design */
-        @media (max-width: 768px) {
-            .gallery {
-                grid-template-columns: 1fr;
-                padding: 2rem 1rem;
-                gap: 2rem;
-            }
-            
-            header {
-                margin: 1rem;
-                padding: 3rem 1.5rem;
-            }
-            
-            .art-card img {
-                height: 280px;
-            }
-
-            .caption {
-                padding: 2rem;
-            }
-        }
-
-        /* Scroll reveal animation */
-        .scroll-reveal {
-            opacity: 0;
-            transform: translateY(80px) rotateX(20deg);
-            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .scroll-reveal.revealed {
-            opacity: 1;
-            transform: translateY(0) rotateX(0deg);
-        }
-
         /* Loading animation */
         .loading {
             position: fixed;
@@ -458,6 +432,234 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+
+        /* Scroll reveal animation */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(80px) rotateX(20deg);
+            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .scroll-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0) rotateX(0deg);
+        }
+
+        /* MOBILE OPTIMIZATIONS */
+        @media (max-width: 768px) {
+            .mobile-only { display: block; }
+            .desktop-only { display: none; }
+
+            body {
+                background-attachment: fixed;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            /* Reduce animations for better performance */
+            .constellation {
+                display: none;
+            }
+
+            /* Mobile-optimized header */
+            header {
+                margin: 1rem;
+                padding: 2.5rem 1.5rem;
+                border-radius: 25px;
+            }
+
+            header::before {
+                animation: none; /* Disable aurora on mobile */
+            }
+
+            h1 {
+                font-size: clamp(2rem, 8vw, 3rem);
+                animation-duration: 6s; /* Slower animation */
+            }
+
+            .subtitle {
+                font-size: clamp(0.9rem, 4vw, 1.2rem);
+                letter-spacing: 1px;
+            }
+
+            /* Mobile gallery optimizations */
+            .gallery {
+                grid-template-columns: 1fr;
+                padding: 1.5rem 1rem;
+                gap: 2rem;
+                perspective: none; /* Disable 3D on mobile */
+            }
+
+            .art-card {
+                border-radius: 20px;
+                transform: none !important; /* Disable 3D transforms */
+                transition: all 0.3s ease;
+                animation: mobileSlideUp 0.8s ease-out forwards;
+            }
+
+            @keyframes mobileSlideUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            /* Mobile touch interactions */
+            .art-card:active {
+                transform: scale(0.98) !important;
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            }
+
+            .art-card img {
+                height: 250px;
+                transition: all 0.3s ease;
+            }
+
+            /* Mobile-specific hover effects */
+            .art-card:active img {
+                transform: scale(1.05);
+                filter: brightness(1.1) saturate(1.2);
+            }
+
+            .image-overlay {
+                opacity: 0.3; /* Always slightly visible on mobile */
+                background: linear-gradient(135deg, 
+                    rgba(255, 107, 157, 0.4) 0%,
+                    rgba(77, 157, 224, 0.4) 100%);
+            }
+
+            .art-card:active .image-overlay {
+                opacity: 0.8;
+            }
+
+            .view-text {
+                font-size: 1rem;
+                letter-spacing: 2px;
+                animation: none;
+            }
+
+            .caption {
+                padding: 1.5rem;
+                font-size: 1rem;
+                line-height: 1.6;
+            }
+
+            .caption::before {
+                width: 40px;
+                height: 3px;
+            }
+
+            /* Mobile modal optimizations */
+            .modal-content {
+                max-width: 98%;
+                max-height: 90%;
+                border-radius: 15px;
+                animation: mobileModalSlide 0.4s ease-out;
+            }
+
+            @keyframes mobileModalSlide {
+                from {
+                    transform: translate(-50%, 100%);
+                    opacity: 0;
+                }
+                to {
+                    transform: translate(-50%, -50%);
+                    opacity: 1;
+                }
+            }
+
+            .close {
+                top: 15px;
+                right: 20px;
+                font-size: 35px;
+            }
+
+            /* Mobile FAB */
+            .fab {
+                bottom: 20px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+                animation: none; /* Disable floating animation */
+            }
+
+            .fab::before {
+                font-size: 20px;
+            }
+
+            /* Scroll reveal for mobile */
+            .scroll-reveal {
+                transform: translateY(30px);
+                transition: all 0.6s ease;
+            }
+
+            .scroll-reveal.revealed {
+                transform: translateY(0);
+            }
+        }
+
+        /* Touch device optimizations */
+        @media (hover: none) and (pointer: coarse) {
+            .art-card:hover {
+                transform: none;
+            }
+
+            .art-card:hover img {
+                transform: none;
+            }
+
+            .art-card:hover .image-overlay {
+                opacity: 0.3;
+            }
+
+            /* Add tap feedback */
+            .art-card {
+                -webkit-tap-highlight-color: rgba(255, 107, 157, 0.2);
+            }
+        }
+
+        /* High DPI displays */
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+            .art-card img {
+                image-rendering: -webkit-optimize-contrast;
+                image-rendering: crisp-edges;
+            }
+        }
+
+        /* Landscape mobile */
+        @media (max-width: 768px) and (orientation: landscape) {
+            header {
+                padding: 2rem 1.5rem;
+            }
+
+            .gallery {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+
+            .art-card img {
+                height: 200px;
+            }
+        }
+
+        /* Very small screens */
+        @media (max-width: 480px) {
+            .gallery {
+                padding: 1rem 0.5rem;
+            }
+
+            .art-card {
+                margin: 0 0.5rem;
+            }
+
+            .caption {
+                padding: 1.2rem;
+                font-size: 0.95rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -466,8 +668,8 @@
         <div class="loading-spinner"></div>
     </div>
 
-    <!-- Animated constellation background -->
-    <div class="constellation" id="constellation"></div>
+    <!-- Animated constellation background (desktop only) -->
+    <div class="constellation desktop-only" id="constellation"></div>
 
     <header>
         <h1>Brushstrokes of Nature</h1>
@@ -514,7 +716,7 @@
             </div>
             <div class="caption">A powerful depiction of the Tree of Life, sculpted in deeply textured gold and white to capture the tree bathed in soft moonlight, symbolizing growth, beauty, and prosperity.</div>
         </div>
-
+        
         <div class="art-card scroll-reveal">
             <div class="image-container" onclick="openModal('https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/mixed-media/3d Red Flower.png')">
                 <img src="https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/mixed-media/3d Red Flower.png" alt="3d Red Flower">
@@ -524,7 +726,7 @@
             </div>
             <div class="caption">Inspired by the enduring beauty of the Peony, this piece uses hand-sculpted texture and shimmering gold accents to symbolize prosperity, romance, and honor.</div>
         </div>
-
+        
         <div class="art-card scroll-reveal">
             <div class="image-container" onclick="openModal('https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/IMG_4003.jpg')">
                 <img src="https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/IMG_4003.jpg" alt="Bala Krishna">
@@ -646,7 +848,7 @@
         </div>
 
         <div class="art-card scroll-reveal">
-            <div class="image-container" onclick="openModal('https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/IMG_6609.JPG')">
+            <div class="image-container" onclick="openModal('https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/watercolor-paintings/Wincaster Mtn Lookout.png')">
                 <img src="https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/watercolor-paintings/Wincaster Mtn Lookout.png" alt="Wincaster Lookout">
                 <div class="image-overlay">
                     <span class="view-text">View Full Size</span>
@@ -676,12 +878,24 @@
     </div>
 
     <script>
-        // Create constellation background
+        // Device detection
+        function isMobile() {
+            return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || 
+                   window.innerWidth <= 768;
+        }
+
+        function isTouchDevice() {
+            return 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+        }
+
+        // Create constellation background (desktop only)
         function createConstellation() {
+            if (isMobile()) return;
+            
             const constellation = document.getElementById('constellation');
             
             // Create stars
-            for (let i = 0; i < 100; i++) {
+            for (let i = 0; i < 80; i++) {
                 const star = document.createElement('div');
                 star.className = 'star';
                 star.style.left = Math.random() * 100 + '%';
@@ -692,7 +906,7 @@
             }
 
             // Create shooting stars
-            for (let i = 0; i < 3; i++) {
+            for (let i = 0; i < 2; i++) {
                 const shootingStar = document.createElement('div');
                 shootingStar.className = 'shooting-star';
                 shootingStar.style.top = Math.random() * 50 + '%';
@@ -724,36 +938,87 @@
             });
         }
 
-        // Scroll reveal animation
+        // Optimized scroll reveal for mobile
         function revealOnScroll() {
             const reveals = document.querySelectorAll('.scroll-reveal');
+            const threshold = isMobile() ? 50 : 100;
             
             reveals.forEach(reveal => {
                 const windowHeight = window.innerHeight;
                 const elementTop = reveal.getBoundingClientRect().top;
-                const elementVisible = 100;
                 
-                if (elementTop < windowHeight - elementVisible) {
+                if (elementTop < windowHeight - threshold) {
                     reveal.classList.add('revealed');
                 }
             });
         }
 
+        // Throttled scroll handler for better performance
+        let scrollTimeout;
+        function handleScroll() {
+            if (scrollTimeout) return;
+            
+            scrollTimeout = setTimeout(() => {
+                revealOnScroll();
+                scrollTimeout = null;
+            }, isMobile() ? 100 : 50);
+        }
+
+        // Touch feedback for mobile
+        function addTouchFeedback() {
+            if (!isTouchDevice()) return;
+            
+            const cards = document.querySelectorAll('.art-card');
+            cards.forEach(card => {
+                card.addEventListener('touchstart', function() {
+                    this.style.transform = 'scale(0.98)';
+                });
+                
+                card.addEventListener('touchend', function() {
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 150);
+                });
+            });
+        }
+
         // Initialize everything
         document.addEventListener('DOMContentLoaded', function() {
-            // Hide loading screen
-            setTimeout(() => {
-                document.getElementById('loading').style.opacity = '0';
+            // Device-specific optimizations
+            if (isMobile()) {
+                document.body.classList.add('mobile-device');
+                // Reduce loading time for mobile
                 setTimeout(() => {
-                    document.getElementById('loading').style.display = 'none';
-                }, 500);
-            }, 1500);
+                    document.getElementById('loading').style.opacity = '0';
+                    setTimeout(() => {
+                        document.getElementById('loading').style.display = 'none';
+                    }, 300);
+                }, 800);
+            } else {
+                setTimeout(() => {
+                    document.getElementById('loading').style.opacity = '0';
+                    setTimeout(() => {
+                        document.getElementById('loading').style.display = 'none';
+                    }, 500);
+                }, 1500);
+            }
 
             createConstellation();
             revealOnScroll();
+            addTouchFeedback();
+            
+            // Log device info for debugging
+            console.log('Device Info:', {
+                isMobile: isMobile(),
+                isTouchDevice: isTouchDevice(),
+                screenWidth: window.innerWidth,
+                userAgent: navigator.userAgent
+            });
         });
 
-        window.addEventListener('scroll', revealOnScroll);
+        // Event listeners
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        window.addEventListener('resize', revealOnScroll);
 
         // Keyboard navigation
         document.addEventListener('keydown', function(event) {
@@ -766,6 +1031,25 @@
         document.getElementById('modalImage').addEventListener('click', function(event) {
             event.stopPropagation();
         });
+
+        // Swipe gestures for mobile modal
+        if (isTouchDevice()) {
+            let startY = 0;
+            const modal = document.getElementById('imageModal');
+            
+            modal.addEventListener('touchstart', function(e) {
+                startY = e.touches[0].clientY;
+            });
+            
+            modal.addEventListener('touchmove', function(e) {
+                const currentY = e.touches[0].clientY;
+                const diff = startY - currentY;
+                
+                if (Math.abs(diff) > 100) {
+                    closeModal();
+                }
+            });
+        }
     </script>
 </body>
 </html>
