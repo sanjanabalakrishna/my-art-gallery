@@ -6,13 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Brushstrokes of Nature - Sanjana Balakrishna's Art Gallery</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <meta property="og:image" content="https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/Mountain Trail.png">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Inter', sans-serif;
@@ -22,64 +19,12 @@
             color: #f8f9fa;
             overflow-x: hidden;
             min-height: 100vh;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
         }
 
         @keyframes gradientFlow {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
-        }
-
-        .mobile-only { display: none; }
-        .desktop-only { display: block; }
-
-        .constellation {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        .star {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: #ffd700;
-            border-radius: 50%;
-            animation: twinkle 3s ease-in-out infinite;
-            box-shadow: 0 0 10px #ffd700;
-        }
-
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.3; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.5); }
-        }
-
-        .shooting-star {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: linear-gradient(45deg, #ff6b9d, #c44569);
-            border-radius: 50%;
-            animation: shoot 8s linear infinite;
-        }
-
-        @keyframes shoot {
-            0% { 
-                transform: translateX(-100px) translateY(100px);
-                opacity: 0;
-            }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { 
-                transform: translateX(100vw) translateY(-100px);
-                opacity: 0;
-            }
         }
 
         header {
@@ -90,65 +35,17 @@
             margin: 2rem;
             border-radius: 40px;
             text-align: center;
-            box-shadow: 
-                0 25px 50px rgba(0, 0, 0, 0.2),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            animation: slideDown 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            overflow: hidden;
-        }
-
-        header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, 
-                transparent, 
-                rgba(255, 107, 157, 0.1), 
-                transparent, 
-                rgba(196, 69, 105, 0.1), 
-                transparent);
-            animation: aurora 8s linear infinite;
-        }
-
-        @keyframes aurora {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        @keyframes slideDown {
-            from { 
-                transform: translateY(-100px) scale(0.8); 
-                opacity: 0; 
-            }
-            to { 
-                transform: translateY(0) scale(1); 
-                opacity: 1; 
-            }
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
         }
 
         h1 {
             font-family: 'Playfair Display', serif;
             font-size: clamp(2.5rem, 5vw, 4.5rem);
-            font-weight: 700;
-            background: linear-gradient(135deg, 
-                #ff6b9d 0%, 
-                #ffd93d 25%, 
-                #6bcf7f 50%, 
-                #4d9de0 75%, 
-                #9b59b6 100%);
+            background: linear-gradient(135deg, #ff6b9d 0%, #ffd93d 25%, #6bcf7f 50%, #4d9de0 75%, #9b59b6 100%);
             background-size: 300% 300%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
             animation: rainbowShift 4s ease-in-out infinite;
-            margin-bottom: 1rem;
-            position: relative;
-            z-index: 1;
-            text-shadow: 0 0 30px rgba(255, 107, 157, 0.3);
         }
 
         @keyframes rainbowShift {
@@ -156,23 +53,10 @@
             50% { background-position: 100% 50%; }
         }
 
-        .subtitle {
-            font-size: clamp(1rem, 3vw, 1.4rem);
-            background: linear-gradient(45deg, #e8f5e8, #f0f8ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-weight: 300;
-            letter-spacing: 2px;
-            position: relative;
-            z-index: 1;
-        }
-
         .welcome-section {
             max-width: 1200px;
             margin: 2rem auto;
             padding: 0 2rem;
-            text-align: center;
         }
 
         .welcome-card {
@@ -181,10 +65,6 @@
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 25px;
             padding: 3rem 2rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            animation: fadeInScale 1.2s ease-out 0.8s both;
-            position: relative;
-            overflow: hidden;
         }
 
         .welcome-content {
@@ -195,63 +75,43 @@
             margin: 0 auto;
         }
 
-        .profile-image {
-            flex-shrink: 0;
+        .profile-image img {
             width: 140px;
             height: 140px;
             border-radius: 50%;
-            overflow: hidden;
             border: 3px solid rgba(255, 107, 157, 0.3);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .profile-image img {
-            width: 100%;
-            height: 100%;
             object-fit: cover;
         }
 
         .about-content {
             flex: 1;
-            text-align: left;
+            position: relative; /* Key for positioning the insta icon */
+            padding-bottom: 20px;
         }
 
-        .welcome-greeting {
-            font-size: clamp(1.3rem, 3vw, 1.6rem);
-            color: #e8f5e8;
-            margin-bottom: 1.2rem;
-            font-weight: 300;
+        .welcome-greeting { font-size: 1.5rem; margin-bottom: 1rem; }
+        .about-text { font-weight: 300; line-height: 1.6; margin-bottom: 1rem; }
+        .artist-signature { font-family: 'Playfair Display', serif; font-style: italic; color: #ff6b9d; }
+
+        /* Instagram Icon Link Styling */
+        .insta-link {
+            position: absolute;
+            bottom: -10px;
+            right: 0;
+            color: #ffffff;
+            font-size: 1.8rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            opacity: 0.8;
         }
 
-        .about-text {
-            font-size: clamp(1rem, 2.5vw, 1.1rem);
-            line-height: 1.7;
-            color: rgba(232, 245, 232, 0.9);
-            margin-bottom: 1.5rem;
-            font-weight: 300;
+        .insta-link:hover {
+            opacity: 1;
+            transform: scale(1.2);
+            color: #ff6b9d;
         }
 
-        .nature-highlight {
-            background: linear-gradient(45deg, #6bcf7f, #4d9de0);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-weight: 400;
-        }
-
-        .artist-signature {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(1.1rem, 2.5vw, 1.3rem);
-            background: linear-gradient(45deg, #ff6b9d, #ffd93d, #6bcf7f);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-style: italic;
-            margin-top: 1rem;
-        }
-
-        /* --- UPDATED GALLERY CSS TO PREVENT CUTTING IMAGES --- */
+        /* Gallery Layout: Image contain fix */
         .gallery {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -259,157 +119,96 @@
             padding: 3rem 2rem;
             max-width: 1600px;
             margin: 0 auto;
-            perspective: 1000px;
         }
 
         .art-card {
             background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 30px;
             overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             display: flex;
             flex-direction: column;
-            animation: fadeInUp 1s ease-out forwards;
-            opacity: 0;
-            transform: translateY(50px);
+            transition: 0.4s ease;
         }
 
-        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
-
         .image-container {
-            position: relative;
-            background: rgba(0, 0, 0, 0.2); /* Helps frame paintings of different sizes */
+            background: rgba(0,0,0,0.2);
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
             cursor: pointer;
-            border-radius: 25px 25px 0 0;
         }
 
         .art-card img {
             width: 100%;
-            height: auto; /* Changed from 320px to auto */
-            max-height: 500px; /* Limits height so cards don't get too long */
-            object-fit: contain; /* Changed from cover to contain to show full image */
-            transition: all 0.8s ease;
-            display: block;
+            height: auto;
+            max-height: 500px;
+            object-fit: contain; /* Prevents cutting off edges */
+            transition: 0.5s ease;
         }
 
-        .art-card:hover img {
-            transform: scale(1.05);
-        }
-
-        .image-overlay {
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(135deg, rgba(255, 107, 157, 0.4), rgba(77, 157, 224, 0.4));
-            opacity: 0;
-            transition: all 0.5s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            backdrop-filter: blur(3px);
-        }
-
-        .art-card:hover .image-overlay { opacity: 1; }
+        .art-card:hover img { transform: scale(1.03); }
 
         .caption {
-            padding: 2.5rem;
-            font-size: 1.1rem;
-            line-height: 1.7;
-            color: #e8f5e8;
+            padding: 2rem;
+            font-size: 1rem;
+            line-height: 1.6;
             background: rgba(26, 26, 46, 0.8);
-            flex-grow: 1; /* Ensures text blocks align nicely */
+            flex-grow: 1;
         }
 
-        /* Modal Styles */
+        /* Modal */
         .modal {
             display: none;
             position: fixed;
             z-index: 2000;
             left: 0; top: 0; width: 100%; height: 100%;
             background: rgba(0, 0, 0, 0.95);
-            backdrop-filter: blur(20px);
+            backdrop-filter: blur(15px);
         }
 
         .modal-content {
             position: absolute;
             top: 50%; left: 50%;
             transform: translate(-50%, -50%);
-            max-width: 95%; max-height: 95%;
+            max-width: 90%; max-height: 90%;
             object-fit: contain;
-            border-radius: 20px;
-            animation: modalAppear 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-
-        @keyframes modalAppear { from { opacity: 0; transform: translate(-50%, -50%) scale(0.8); } to { opacity: 1; transform: translate(-50%, -50%) scale(1); } }
 
         .close {
             position: absolute;
-            top: 30px; right: 40px;
-            color: #ff6b9d; font-size: 50px; font-weight: bold; cursor: pointer;
-            z-index: 2001;
+            top: 20px; right: 35px;
+            color: #fff; font-size: 40px; cursor: pointer;
         }
-
-        .fab {
-            position: fixed;
-            bottom: 30px; right: 30px;
-            width: 60px; height: 60px;
-            background: linear-gradient(135deg, #ff6b9d, #4d9de0);
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            cursor: pointer; box-shadow: 0 10px 30px rgba(255, 107, 157, 0.4);
-            z-index: 1000;
-        }
-
-        .fab::before { content: '↑'; color: white; font-size: 24px; font-weight: bold; }
-
-        .loading {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: #1a1a2e; display: flex; align-items: center; justify-content: center;
-            z-index: 9999; transition: opacity 0.5s ease;
-        }
-
-        .loading-spinner {
-            width: 60px; height: 60px;
-            border: 3px solid rgba(255, 107, 157, 0.3);
-            border-top: 3px solid #ff6b9d;
-            border-radius: 50%; animation: spin 1s linear infinite;
-        }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
         @media (max-width: 768px) {
-            .gallery { grid-template-columns: 1fr; }
             .welcome-content { flex-direction: column; text-align: center; }
-            .about-content { text-align: center; }
+            .insta-link { position: relative; display: block; margin-top: 15px; text-align: center; }
         }
     </style>
 </head>
 <body>
-    <div class="loading" id="loading"><div class="loading-spinner"></div></div>
-    <div class="constellation desktop-only" id="constellation"></div>
 
     <header>
         <h1>Brushstrokes of Nature</h1>
-        <p class="subtitle">A collection of my paintings and the stories they tell</p>
+        <p>A collection of my paintings and the stories they tell</p>
     </header>
 
     <section class="welcome-section">
         <div class="welcome-card">
             <div class="welcome-content">
-                <div class="profile-image" onclick="openProfileModal()">
+                <div class="profile-image">
                     <img src="https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/misc/Sanjana.jpg" alt="Sanjana">
                 </div>
                 <div class="about-content">
                     <div class="welcome-greeting">Welcome to my artistic journey 👋</div>
                     <p class="about-text">
-                        By day, I'm an engineer solving complex problems. But when the sun sets, I trade my keyboard for a paintbrush. <span class="nature-highlight">Nature isn't just my escape—it's my greatest teacher</span>.
+                        By day, I'm an engineer solving complex problems. But when the sun sets, I trade my keyboard for a paintbrush. Nature isn't just my escape—it's my greatest teacher.
                     </p>
                     <div class="artist-signature">~ Sanjana, Engineer & Nature's Student</div>
+                    
+                    <a href="https://www.instagram.com/sanjanabalakrishna/?hl=en" target="_blank" class="insta-link">
+                        <i class="fab fa-instagram"></i>
+                    </a>
                 </div>
             </div>
         </div>
@@ -417,231 +216,174 @@
 
     <section class="gallery">
         <div class="art-card">
-            <div class="image-container" onclick="openModal('https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/acrylic-paintings/MountainTrail.jpg')">
-                <img src="https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/acrylic-paintings/MountainTrail.jpg" alt="Mountain Trail">
-                <div class="image-overlay"><span class="view-text">View Full Size</span></div>
+            <div class="image-container" onclick="openModal(this.querySelector('img').src)">
+                <img src="https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/Mountain Trail.png" alt="Mountain Trail">
             </div>
-            <div class="caption">Home is wherever the trail leads. Inspired from my passion for hiking. The path to peaks - where every step leads to wonder.</div>
+            <div class="caption">Home is wherever the trail leads. Inspired from my passion for hiking.</div>
         </div>
-
         <div class="art-card">
-            <div class="image-container" onclick="openModal('https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/acrylic-paintings/Autumn at Winter’s Gate.jpeg')">
+            <div class="image-container" onclick="openModal(this.querySelector('img').src)">
                 <img src="https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/acrylic-paintings/Autumn at Winter’s Gate.jpeg" alt="Autumn">
-                <div class="image-overlay"><span class="view-text">View Full Size</span></div>
             </div>
-            <div class="caption">Inspired by the meeting point between what changes and what lasts forever. The fleeting is how the eternal becomes visible.</div>
+            <div class="caption">The meeting point between what changes and what lasts forever.</div>
         </div>
-
         <div class="art-card">
-            <div class="image-container" onclick="openModal('https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/acrylic-paintings/Mountain Camping.jpg')">
+            <div class="image-container" onclick="openModal(this.querySelector('img').src)">
                 <img src="https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/acrylic-paintings/Mountain Camping.jpg" alt="Camping">
-                <div class="image-overlay"><span class="view-text">View Full Size</span></div>
             </div>
-            <div class="caption">A reflection of my ideal escape into nature. The crisp air and the crackle of a campfire. It's more than a scene; it's a feeling.</div>
+            <div class="caption">A reflection of my ideal escape into nature.</div>
         </div>
-
         <div class="art-card">
-            <div class="image-container" onclick="openModal('https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/acrylic-paintings/Mt Fuji Spring.jpg')">
+            <div class="image-container" onclick="openModal(this.querySelector('img').src)">
                 <img src="https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/acrylic-paintings/Mt Fuji Spring.jpg" alt="Mt Fuji">
-                <div class="image-overlay"><span class="view-text">View Full Size</span></div>
             </div>
-            <div class="caption">Inspired by my visit to Japan. Mt Fuji stands quietly in distance. The soft sky and blossoms symbolize renewal.</div>
+            <div class="caption">Inspired by my visit to Japan. Soft sky and blossoms symbolize renewal.</div>
         </div>
-
         <div class="art-card">
-            <div class="image-container" onclick="openModal('https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/watercolor-paintings/Psychological Landscape Bear.png')">
+            <div class="image-container" onclick="openModal(this.querySelector('img').src)">
                 <img src="https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/watercolor-paintings/Psychological Landscape Bear.png" alt="Bear">
-                <div class="image-overlay"><span class="view-text">View Full Size</span></div>
             </div>
-            <div class="caption">Nature lives within us. The bear isn’t just standing in the forest; the forest is the bear. Strength is found in the quiet depth of instinct.</div>
+            <div class="caption">The bear isn’t just standing in the forest; the forest is the bear.</div>
         </div>
-
         <div class="art-card">
-            <div class="image-container" onclick="openModal('https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/acrylic-paintings/Maligne Lake.jpg')">
+            <div class="image-container" onclick="openModal(this.querySelector('img').src)">
                 <img src="https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/acrylic-paintings/Maligne Lake.jpg" alt="Maligne Lake">
-                <div class="image-overlay"><span class="view-text">View Full Size</span></div>
             </div>
-            <div class="caption">Nature's masterpiece, family's treasure - Maligne Lake memories in paint. Gift for my parents.</div>
+            <div class="caption">Nature's masterpiece - Maligne Lake memories in paint.</div>
         </div>
-
         <div class="art-card">
-            <div class="image-container" onclick="openModal('https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/acrylic-paintings/WA Winter Cabin.jpg')">
+            <div class="image-container" onclick="openModal(this.querySelector('img').src)">
                 <img src="https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/acrylic-paintings/WA Winter Cabin.jpg" alt="Cabin">
-                <div class="image-overlay"><span class="view-text">View Full Size</span></div>
             </div>
-            <div class="caption">A quintessential Washington winter scene, where evergreen forests are blanketed in snow and a fire glows by a tranquil river.</div>
+            <div class="caption">A Washington winter scene blanketed in snow.</div>
         </div>
-
         <div class="art-card">
-            <div class="image-container" onclick="openModal('https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/watercolor-paintings/High Alps.jpg')">
+            <div class="image-container" onclick="openModal(this.querySelector('img').src)">
                 <img src="https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/watercolor-paintings/High Alps.jpg" alt="Alps">
-                <div class="image-overlay"><span class="view-text">View Full Size</span></div>
             </div>
-            <div class="caption">High Alps: The call of the mountains captured in bold color, inspiring awe and the spirit of adventure.</div>
+            <div class="caption">The call of the mountains captured in bold color.</div>
         </div>
-
         <div class="art-card">
-            <div class="image-container" onclick="openModal('https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/acrylic-paintings/Journey Matters.jpeg')">
+            <div class="image-container" onclick="openModal(this.querySelector('img').src)">
                 <img src="https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/acrylic-paintings/Journey Matters.jpeg" alt="Journey">
-                <div class="image-overlay"><span class="view-text">View Full Size</span></div>
             </div>
-            <div class="caption">The journey matters as much as the destination. Take a pause, look around, admire and keep going.</div>
+            <div class="caption">The journey matters as much as the destination.</div>
         </div>
-
         <div class="art-card">
-            <div class="image-container" onclick="openModal('https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/mixed-media/3d Moon Tree.png')">
+            <div class="image-container" onclick="openModal(this.querySelector('img').src)">
                 <img src="https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/mixed-media/3d Moon Tree.png" alt="Moon Tree">
-                <div class="image-overlay"><span class="view-text">View Full Size</span></div>
             </div>
-            <div class="caption">A powerful depiction of the Tree of Life, sculpted in gold and white to capture the moon's glow.</div>
+            <div class="caption">The Tree of Life sculpted in gold and white.</div>
         </div>
-
         <div class="art-card">
-            <div class="image-container" onclick="openModal('https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/mixed-media/3d Red Flower.png')">
+            <div class="image-container" onclick="openModal(this.querySelector('img').src)">
                 <img src="https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/mixed-media/3d Red Flower.png" alt="Red Flower">
-                <div class="image-overlay"><span class="view-text">View Full Size</span></div>
             </div>
-            <div class="caption">Inspired by the Peony, this piece uses hand-sculpted texture and gold accents to symbolize prosperity.</div>
+            <div class="caption">Hand-sculpted texture symbolizing prosperity.</div>
         </div>
-
         <div class="art-card">
-            <div class="image-container" onclick="openModal('https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/mixed-media/Impasto Colored Mountains.jpg')">
+            <div class="image-container" onclick="openModal(this.querySelector('img').src)">
                 <img src="https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/mixed-media/Impasto Colored Mountains.jpg" alt="Mountains">
-                <div class="image-overlay"><span class="view-text">View Full Size</span></div>
             </div>
-            <div class="caption">3d mountains with modelling paste. Inspired by the awe-inspiring grandeur of rugged landscapes.</div>
+            <div class="caption">3D mountains created with modelling paste.</div>
         </div>
-
         <div class="art-card">
-            <div class="image-container" onclick="openModal('https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/watercolor-paintings/Bala Krishna.jpg')">
-                <img src="https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/watercolor-paintings/Bala Krishna.jpg" alt="Bala Krishna">
-                <div class="image-overlay"><span class="view-text">View Full Size</span></div>
+            <div class="image-container" onclick="openModal(this.querySelector('img').src)">
+                <img src="https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/IMG_4003.jpg" alt="Bala Krishna">
             </div>
-            <div class="caption">Bala Krishna's eternal charm captured in watercolor for my in-law parents.</div>
+            <div class="caption">Bala Krishna's eternal charm in watercolor.</div>
         </div>
-
         <div class="art-card">
-            <div class="image-container" onclick="openModal('https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/acrylic-paintings/PathAhead.jpg')">
-                <img src="https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/acrylic-paintings/PathAhead.jpg" alt="Path Ahead">
-                <div class="image-overlay"><span class="view-text">View Full Size</span></div>
+            <div class="image-container" onclick="openModal(this.querySelector('img').src)">
+                <img src="https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/IMG_3955.jpg" alt="Path">
             </div>
-            <div class="caption">There are far better things ahead than any we leave behind. Gift for a friend.</div>
+            <div class="caption">There are far better things ahead than any we leave behind.</div>
         </div>
-
         <div class="art-card">
-            <div class="image-container" onclick="openModal('https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/mixed-media/3dWhiteFlower.jpg')">
+            <div class="image-container" onclick="openModal(this.querySelector('img').src)">
                 <img src="https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/mixed-media/3dWhiteFlower.jpg" alt="White Flower">
-                <div class="image-overlay"><span class="view-text">View Full Size</span></div>
             </div>
-            <div class="caption">Sculpted each petal with modelling paste; finished with gold accents. Resilience in nature's blooms.</div>
+            <div class="caption">Resilience in nature's blooms, sculpted petal by petal.</div>
         </div>
-
         <div class="art-card">
-            <div class="image-container" onclick="openModal('https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/IMG_4238.JPG')">
+            <div class="image-container" onclick="openModal(this.querySelector('img').src)">
                 <img src="https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/IMG_4238.JPG" alt="Vermont">
-                <div class="image-overlay"><span class="view-text">View Full Size</span></div>
             </div>
-            <div class="caption">Vermont's autumn symphony - where every leaf tells a story.</div>
+            <div class="caption">Vermont's autumn symphony.</div>
         </div>
-
         <div class="art-card">
-            <div class="image-container" onclick="openModal('https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/IMG_4954.JPG')">
+            <div class="image-container" onclick="openModal(this.querySelector('img').src)">
                 <img src="https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/IMG_4954.JPG" alt="Waterfall">
-                <div class="image-overlay"><span class="view-text">View Full Size</span></div>
             </div>
-            <div class="caption">Hidden symphony: where water meets woodland silence.</div>
+            <div class="caption">Where water meets woodland silence.</div>
         </div>
-
         <div class="art-card">
-            <div class="image-container" onclick="openModal('https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/Discover Park.png')">
+            <div class="image-container" onclick="openModal(this.querySelector('img').src)">
                 <img src="https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/Discover Park.png" alt="Discovery Park">
-                <div class="image-overlay"><span class="view-text">View Full Size</span></div>
             </div>
-            <div class="caption">Mt. Tahoma witnessed what we couldn't. I made this for my friends who got engaged here.</div>
+            <div class="caption">Mt. Tahoma witnessed what we couldn't.</div>
         </div>
-
         <div class="art-card">
-            <div class="image-container" onclick="openModal('https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/IMG_5430.JPG')">
+            <div class="image-container" onclick="openModal(this.querySelector('img').src)">
                 <img src="https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/IMG_5430.JPG" alt="Wolf">
-                <div class="image-overlay"><span class="view-text">View Full Size</span></div>
             </div>
             <div class="caption">The wolf within us all - fierce, loyal, free.</div>
         </div>
-
         <div class="art-card">
-            <div class="image-container" onclick="openModal('https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/Abstract Sunset.jpeg')">
+            <div class="image-container" onclick="openModal(this.querySelector('img').src)">
                 <img src="https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/Abstract Sunset.jpeg" alt="Sunset">
-                <div class="image-overlay"><span class="view-text">View Full Size</span></div>
             </div>
             <div class="caption">Striped sky, solitary sentinel - evening's geometry.</div>
         </div>
-
         <div class="art-card">
-            <div class="image-container" onclick="openModal('https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/Mt Hood Lavender Field.jpg')">
+            <div class="image-container" onclick="openModal(this.querySelector('img').src)">
                 <img src="https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/Mt Hood Lavender Field.jpg" alt="Lavender">
-                <div class="image-overlay"><span class="view-text">View Full Size</span></div>
             </div>
-            <div class="caption">Where lavender meets mountain - Oregon's fragrant paradise.</div>
+            <div class="caption">Where lavender meets mountain - Oregon's paradise.</div>
         </div>
-
         <div class="art-card">
-            <div class="image-container" onclick="openModal('https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/Peacocks.jpg')">
+            <div class="image-container" onclick="openModal(this.querySelector('img').src)">
                 <img src="https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/Peacocks.jpg" alt="Peacocks">
-                <div class="image-overlay"><span class="view-text">View Full Size</span></div>
             </div>
-            <div class="caption">Two jewels of the forest, crowned in iridescent glory. Gift for my mother-in-law.</div>
+            <div class="caption">Two jewels of the forest, crowned in iridescent glory.</div>
         </div>
-
         <div class="art-card">
-            <div class="image-container" onclick="openModal('https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/Jelly Fish.jpeg')">
+            <div class="image-container" onclick="openModal(this.querySelector('img').src)">
                 <img src="https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/Jelly Fish.jpeg" alt="Jellyfish">
-                <div class="image-overlay"><span class="view-text">View Full Size</span></div>
             </div>
-            <div class="caption">Ocean's living lanterns - jellyfish in electric dance.</div>
+            <div class="caption">Ocean's living lanterns in electric dance.</div>
         </div>
-
         <div class="art-card">
-            <div class="image-container" onclick="openModal('https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/IMG_3930.jpg')">
+            <div class="image-container" onclick="openModal(this.querySelector('img').src)">
                 <img src="https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/IMG_3930.jpg" alt="Snow Beauty">
-                <div class="image-overlay"><span class="view-text">View Full Size</span></div>
             </div>
-            <div class="caption">Snow Beauty. Used sand, clay and modelling paste to make this 3D piece.</div>
+            <div class="caption">3D piece created with sand, clay, and modelling paste.</div>
         </div>
-
         <div class="art-card">
-            <div class="image-container" onclick="openModal('https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/IMG_6609.JPG')">
+            <div class="image-container" onclick="openModal(this.querySelector('img').src)">
                 <img src="https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/IMG_6609.JPG" alt="Fawn">
-                <div class="image-overlay"><span class="view-text">View Full Size</span></div>
             </div>
             <div class="caption">Morning light finds innocence among the trees.</div>
         </div>
-
         <div class="art-card">
-            <div class="image-container" onclick="openModal('https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/watercolor-paintings/Wincaster Mtn Lookout.png')">
+            <div class="image-container" onclick="openModal(this.querySelector('img').src)">
                 <img src="https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/watercolor-paintings/Wincaster Mtn Lookout.png" alt="Lookout">
-                <div class="image-overlay"><span class="view-text">View Full Size</span></div>
             </div>
-            <div class="caption">Painted to immortalize where two friends began their journey together. A wedding gift.</div>
+            <div class="caption">Immortalizing where two friends began their journey.</div>
         </div>
-
         <div class="art-card">
-            <div class="image-container" onclick="openModal('https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/Radha Krishna.jpg')">
+            <div class="image-container" onclick="openModal(this.querySelector('img').src)">
                 <img src="https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/Radha Krishna.jpg" alt="Radha Krishna">
-                <div class="image-overlay"><span class="view-text">View Full Size</span></div>
             </div>
-            <div class="caption">Resonates deeply with heritage. Requested by my husband's grandmother.</div>
+            <div class="caption">Resonates deeply with heritage.</div>
         </div>
-
         <div class="art-card">
-            <div class="image-container" onclick="openModal('https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/watercolor-paintings/Chandratal.jpg')">
+            <div class="image-container" onclick="openModal(this.querySelector('img').src)">
                 <img src="https://raw.githubusercontent.com/sanjanabalakrishna/my-art-gallery/main/watercolor-paintings/Chandratal.jpg" alt="Chandratal">
-                <div class="image-overlay"><span class="view-text">View Full Size</span></div>
             </div>
-            <div class="caption">Captured my sister-in-law's happy place so she can always be reminded of joy.</div>
+            <div class="caption">Capturing a happy place to always remind of joy.</div>
         </div>
     </section>
-
-    <div class="fab" onclick="scrollToTop()"></div>
 
     <div id="imageModal" class="modal" onclick="closeModal()">
         <span class="close">&times;</span>
@@ -658,14 +400,6 @@
             document.getElementById('imageModal').style.display = 'none';
             document.body.style.overflow = 'auto';
         }
-        function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
-
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                document.getElementById('loading').style.opacity = '0';
-                setTimeout(() => document.getElementById('loading').style.display = 'none', 500);
-            }, 1000);
-        });
     </script>
 </body>
 </html>
